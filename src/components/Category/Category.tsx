@@ -1,9 +1,9 @@
 
 import './Category.css'
-import img1 from '../../assets/scott-webb-pkeb1NqMILc-unsplash.jpg'
+
 const Category = () => {
     return (
-        <div className="cat py-20 flex flex-col items-center">
+        <div className="cat pb-36 pt-60 flex flex-col items-center">
             <div className="category flex mx-auto justify-center ">
                 <p className="text-[#bdc468]">Categories</p>
             </div>
