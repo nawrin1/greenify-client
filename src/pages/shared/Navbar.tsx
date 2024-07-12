@@ -13,7 +13,7 @@ const Navbar = () => {
     <p className="text-3xl font-bold pt-3">Greenify</p><div className="text-2xl pt-4"><FaLeaf /></div>
     </div>
   
-  <div className=" lg:flex pt-4">
+  <div className=" lg:flex pt-4 pl-10">
     <ul className="menu menu-horizontal  space-x-8 text-xl">
       <li>Home</li>
       <li>

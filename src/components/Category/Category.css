@@ -1,0 +1,68 @@
+
+.category {
+    position: relative;
+    
+    text-decoration: none; 
+   
+}
+
+.category::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    
+    height: 2px;
+    bottom: 2%;
+    left: 25%;
+   
+    background-color: #2b3c17;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+}
+
+.category:hover::before {
+    transform: scaleX(1);
+    transform-origin: center;
+}
+
+.cat {
+    position: relative;
+    overflow: hidden; /* Ensure the pseudo-element does not overflow the container */
+}
+
+.cat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom , rgba(131, 167, 143, 0.5), rgba(210, 203, 203, 0.845)), url('../../assets/sarah-dorweiler-x2Tmfd1-SgA-unsplash.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5; /* Adjust this value to change the opacity of the background image */
+    z-index: -1; 
+    
+    
+    /* Ensure the pseudo-element is behind the content */
+}
+
+.product{
+    background-image: url('../../assets/scott-webb-pkeb1NqMILc-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    
+    position: relative;
+    
+}
+.product:hover{
+    outline: 2px solid green;
+}
+
+
+
+
+

@@ -6,7 +6,7 @@ const banner = () => {
                         <div className="w-2/6 bg-[#9ac284] h-[700px]">
 
                         </div>
-                        <div className="w-2/6 bg-[#dee1d8] h-[500px] absolute left-[16%] top-[20%] rounded-[200px] -z-5 flex justify-center">
+                        <div className="w-2/6 bg-[#dee1d8] h-[500px] absolute left-[16%] top-[20%] shadow-xl rounded-[200px] -z-5 flex justify-center">
                          <img className="h-[450px] rounded-[200px]"src={img1}></img>
                         </div>
                         
