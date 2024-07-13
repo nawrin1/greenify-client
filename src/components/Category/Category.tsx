@@ -1,11 +1,13 @@
 
+import { FaLeaf } from 'react-icons/fa';
 import './Category.css'
 
 const Category = () => {
     return (
-        <div className="cat pb-36 pt-60 flex flex-col items-center">
+        <div className="cat pb-36 pt-60 flex flex-col items-center ">
             <div className="category flex mx-auto justify-center ">
                 <p className="text-[#bdc468]">Categories</p>
+                <div className="text-2xl pt-6 pl-2"><FaLeaf /></div>
             </div>
 
 

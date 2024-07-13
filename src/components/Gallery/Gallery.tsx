@@ -12,11 +12,16 @@ import img9 from '../../assets/p9.jpg'
 import img10 from '../../assets/p10.jpg'
 import img11 from '../../assets/p11.jpg'
 import img12 from '../../assets/p12.jpg';
+import { FaLeaf } from 'react-icons/fa'
 const Gallery = () => {
     return (
         <div className="gal py-20 flex flex-col items-center p-4">
             <div className="category flex mx-auto justify-center ">
                 <p className="text-[#bdc468]">Gallery</p>
+                <div className="text-2xl pt-6 pl-2"><FaLeaf /></div>
+            </div>
+            <div>
+                <p className='text-2xl text-center py-10'>Join our community of plant lovers <br /> and see how our plants can transform your space!</p>
             </div>
 
 

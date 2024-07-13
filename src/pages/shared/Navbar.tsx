@@ -3,6 +3,8 @@ import { Input } from "@mui/material";
 import { FaLeaf } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from 'react-icons/im';
+import { NavLink } from 'react-router-dom';
+import './Navbar.css'
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,14 +22,24 @@ const Navbar = () => {
                         <div className={`text-2xl pt-4 px-2 lg:hidden `} onClick={toggleSidebar}>
                             <GiHamburgerMenu />
                         </div>
-                        <p className="text-3xl font-bold pt-3">Greenify</p>
+                        <p className="text-3xl font-bold pt-3 ">Greenify</p>
                         <div className="text-2xl pt-4"><FaLeaf /></div>
                     </div>
                     {/* Navbar Links (Hidden on small screens) */}
                     <div className="hidden lg:flex pt-4 pl-10">
                         <ul className="menu menu-horizontal space-x-8 text-xl">
-                            <li>Home</li>
-                            <li>Products</li>
+                            
+                        <NavLink to='/' className={({ isActive }) =>
+                        isActive ? "active" : ""
+                        }>
+                            <li className='a'>Home</li>
+                        </NavLink>
+
+                        <NavLink to='/products' className={({ isActive }) =>
+                        isActive ? "active" : ""
+                        }>
+                            <li className='a'>Products</li>
+                        </NavLink>
                             <li>Product Manage</li>
                         </ul>
                     </div>
@@ -68,16 +80,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            {/* Sidebar for Small Devices */}
 
-            {/* <div className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-50 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={toggleSidebar}></div>
-            <div className={`fixed inset-y-0 left-0 bg-white w-64 z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <ul className="menu menu-vertical space-y-4 text-xl pt-20">
-                    <li>Home</li>
-                    <li>Products</li>
-                    <li>Product Manage</li>
-                </ul>
-            </div> */}
 
             
             <div className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-50 lg:hidden transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={toggleSidebar}></div>
