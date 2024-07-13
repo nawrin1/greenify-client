@@ -8,7 +8,7 @@ const MainLayout = () => {
         <div className="text-6xl font-extrabold h-full">
             <Navbar></Navbar>
             
-            <div className="h-[100vh]">
+            <div className="min-h-screen">
             <Outlet></Outlet>
             </div>
             <Footer></Footer>

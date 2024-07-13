@@ -2,7 +2,30 @@ import "./Products.css";
 import img1 from "../../assets/sarah-dorweiler-x2Tmfd1-SgA-unsplash.jpg";
 import { FaArrowRight, FaLeaf } from "react-icons/fa";
 import { CgShoppingCart } from "react-icons/cg";
+import { ThreeDots } from "react-loader-spinner";
+import { useGetAllProductsQuery } from "../../redux/features/productApi";
+import { IoMdStar } from "react-icons/io";
+import { LiaDollarSignSolid } from "react-icons/lia";
+import { NavLink } from "react-router-dom";
 const Products = () => {
+  const { data,  isLoading } =  useGetAllProductsQuery(undefined, {
+    pollingInterval: 1000,
+  });
+console.log(data,"from all products")
+if(isLoading){
+  return <div className="min-h-screen flex justify-center items-center">
+    <ThreeDots
+  visible={true}
+  height="80"
+  width="80"
+  color="#4fa94d"
+  radius="9"
+  ariaLabel="three-dots-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
+  </div>
+}
   return (
     <div className="prod pb-36 flex flex-col items-center px-4 relative">
       <div className="flex justify-end w-full pr-10 absolute top-[33%]">
@@ -25,162 +48,48 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="w-[70%] mt-6 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center ">
-        <div className="card  bg-slate-500   ">
-          <div className="absolute flex justify-end w-full">
-            <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
-            <p className="text-black text-2xl"><CgShoppingCart /></p>
-            </div>
-          </div>
-          <img className="h-[350px] w-[250px] object-fill" src={img1} alt="" />
-          <div className="intro">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-2xl">Cactus 4*</h1>
-              </div>
-              <div>
-                <p className="text-xl ">price</p>
-              </div>
-            </div>
-            <p className="para text-xl">Category:cactus</p>
-            <p className="para text-[16px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur nesciunt maxime possimus dolorum quos. Nisi,
-              perspiciatis.
-            </p>
-            <p></p>
-          </div>
-        </div>
-        <div className="card  bg-slate-500   ">
-          <div className="absolute flex justify-end w-full">
-            <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
-            <p className="text-black text-2xl"><CgShoppingCart /></p>
-            </div>
-          </div>
-          <img className="h-[350px] w-[250px] object-fill" src={img1} alt="" />
-          <div className="intro">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-2xl">Cactus 4*</h1>
-              </div>
-              <div>
-                <p className="text-xl ">price</p>
-              </div>
-            </div>
-            <p className="para text-xl">Category:cactus</p>
-            <p className="para text-[16px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur nesciunt maxime possimus dolorum quos. Nisi,
-              perspiciatis.
-            </p>
-            <p></p>
-          </div>
-        </div>
-        <div className="card  bg-slate-500   ">
-          <div className="absolute flex justify-end w-full">
-            <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
-            <p className="text-black text-2xl"><CgShoppingCart /></p>
-            </div>
-          </div>
-          <img className="h-[350px] w-[250px] object-fill" src={img1} alt="" />
-          <div className="intro">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-2xl">Cactus 4*</h1>
-              </div>
-              <div>
-                <p className="text-xl ">price</p>
-              </div>
-            </div>
-            <p className="para text-xl">Category:cactus</p>
-            <p className="para text-[16px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur nesciunt maxime possimus dolorum quos. Nisi,
-              perspiciatis.
-            </p>
-            <p></p>
-          </div>
-        </div>
-        <div className="card  bg-slate-500   ">
-          <div className="absolute flex justify-end w-full">
-            <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
-            <p className="text-black text-2xl"><CgShoppingCart /></p>
-            </div>
-          </div>
-          <img className="h-[350px] w-[250px] object-fill" src={img1} alt="" />
-          <div className="intro">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-2xl">Cactus 4*</h1>
-              </div>
-              <div>
-                <p className="text-xl ">price</p>
-              </div>
-            </div>
-            <p className="para text-xl">Category:cactus</p>
-            <p className="para text-[16px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur nesciunt maxime possimus dolorum quos. Nisi,
-              perspiciatis.
-            </p>
-            <p></p>
-          </div>
-        </div>
-        <div className="card  bg-slate-500   ">
-          <div className="absolute flex justify-end w-full">
-            <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
-            <p className="text-black text-2xl"><CgShoppingCart /></p>
-            </div>
-          </div>
-          <img className="h-[350px] w-[250px] object-fill" src={img1} alt="" />
-          <div className="intro">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-2xl">Cactus 4*</h1>
-              </div>
-              <div>
-                <p className="text-xl ">price</p>
-              </div>
-            </div>
-            <p className="para text-xl">Category:cactus</p>
-            <p className="para text-[16px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur nesciunt maxime possimus dolorum quos. Nisi,
-              perspiciatis.
-            </p>
-            <p></p>
-          </div>
-        </div>
-        <div className="card  bg-slate-500   ">
-          <div className="absolute flex justify-end w-full">
-            <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
-            <p className="text-black text-2xl"><CgShoppingCart /></p>
-            </div>
-          </div>
-          <img className="h-[350px] w-[250px] object-fill" src={img1} alt="" />
-          <div className="intro">
-            <div className="flex justify-between">
-              <div>
-                <h1 className="text-2xl">Cactus 4*</h1>
-              </div>
-              <div>
-                <p className="text-xl ">price</p>
-              </div>
-            </div>
-            <p className="para text-xl">Category:cactus</p>
-            <p className="para text-[16px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur nesciunt maxime possimus dolorum quos. Nisi,
-              perspiciatis.
-            </p>
-            <p></p>
-          </div>
+      <div className="w-[70%]  grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mt-20 pb-20">
+            {
+                data.data.slice(0,6).map((product,idx)=><div key={idx} className="card  bg-slate-500   ">
+                <div className="absolute flex justify-end w-full">
+                  <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
+                  <p className="text-black text-2xl"><CgShoppingCart /></p>
+                  </div>
+                </div>
+                <img className="h-[350px] w-[250px] object-fill" src={product.image} alt="" />
+                <div className="intro">
+                  <div className="flex justify-between">
+                    <div className="">
+                     <div>
+                     <h1 className="text-[22px] text-wrap overflow-hidden">{product.title} </h1>
+                     <div className="flex ">
+                     <p className="text-2xl">{product.rating}  </p>
+                     <div className="text-yellow-300 text-xl mt-1"><IoMdStar /></div>
+                     </div>
+
+                     </div>
+                      {/* <div>
+                      <p className="text-2xl mt-0">{product.rating}</p>
+                      </div> */}
+                    </div>
+                    <div className="flex">
+                      <p className="text-xl ">{product.price}</p>
+                      <div className=" text-xl mt-1"><LiaDollarSignSolid /></div>
+                      
+                    </div>
+                  </div>
+                  <p className="para text-xl">Category: {product.category}</p>
+                  <p className="para text-[16px] text-[#f3f3f3]">
+                   {product.description}
+                  </p>
+                  <p></p>
+                </div>
+              </div>)
+            }
+            
         </div>
 
-
-      </div>
-
-      <div className="button border-[#bdc468] border-2 w-[180px] h-[50px] flex rounded-[50px] relative  mt-6">
+<NavLink to='/products'>      <div className="button border-[#bdc468] border-2 w-[180px] h-[50px] flex rounded-[50px] relative  mt-6">
         <div className="bg-[#2b3c17] w-[100%] h-[50px]  rounded-l-[50px] flex justify-center items-center pr-2">
           <p className="text-xl text-[#bdc468]">See More</p>
         </div>
@@ -189,7 +98,7 @@ const Products = () => {
             <FaArrowRight />
           </div>
         </div>
-      </div>
+      </div></NavLink>
     </div>
   );
 };
