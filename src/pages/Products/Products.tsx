@@ -6,7 +6,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { useGetAllProductsQuery } from "../../redux/features/productApi";
 import { IoMdStar } from "react-icons/io";
 import { LiaDollarSignSolid } from "react-icons/lia";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const Products = () => {
   const { data,  isLoading } =  useGetAllProductsQuery(undefined, {
     pollingInterval: 1000,
@@ -50,7 +50,7 @@ if(isLoading){
 
       <div className="w-[70%]  grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mt-20 pb-20">
             {
-                data.data.slice(0,6).map((product,idx)=><div key={idx} className="card  bg-slate-500   ">
+                data.data.slice(0,6).map((product,idx)=><Link to={`/products/${product.title}`}><div key={idx} className="card  bg-slate-500   ">
                 <div className="absolute flex justify-end w-full">
                   <div className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center">
                   <p className="text-black text-2xl"><CgShoppingCart /></p>
@@ -79,12 +79,12 @@ if(isLoading){
                     </div>
                   </div>
                   <p className="para text-xl">Category: {product.category}</p>
-                  <p className="para text-[16px] text-[#f3f3f3]">
+                  <p className="para text-[16px] text-[#f3f3f3] overflow-ellipsis">
                    {product.description}
                   </p>
                   <p></p>
                 </div>
-              </div>)
+              </div></Link>)
             }
             
         </div>

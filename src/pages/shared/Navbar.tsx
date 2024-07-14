@@ -45,7 +45,7 @@ const Navbar = () => {
                     </div>
                     {/* Search Input and Cart Dropdown */}
                     <div className="flex justify-end">
-                        <div>
+                        <div className=''>
                             <Input placeholder="Search" />
                         </div>
                         {/* Cart Dropdown */}
@@ -90,9 +90,18 @@ const Navbar = () => {
                         </div>
 
                 <ul className="menu menu-vertical space-y-4 text-xl pt-20">
-                    <li>Home</li>
-                    <li>Products</li>
-                    <li>Product Manage</li>
+                <NavLink to='/' className={({ isActive }) =>
+                        isActive ? "active" : ""
+                        }>
+                            <li className='a'>Home</li>
+                        </NavLink>
+
+                        <NavLink to='/products' className={({ isActive }) =>
+                        isActive ? "active" : ""
+                        }>
+                            <li className='a'>Products</li>
+                        </NavLink>
+                            <li>Product Manage</li>
                 </ul>
             </div>
         </div>
