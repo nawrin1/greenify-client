@@ -4,14 +4,15 @@ import { ThreeDots } from "react-loader-spinner";
 import { IoMdStar } from "react-icons/io";
 import { toast, ToastContainer } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { addProduct, updateCart } from "../../redux/features/cartSlice";
+import { addProduct, total, updateCart } from "../../redux/features/cartSlice";
+import { PiExamThin } from "react-icons/pi";
 
 const SingleProduct = () => {
   const { productName } = useParams();
   // console.log(productName,"from single elem")
   const { data, isLoading } = useGetSingleProductQuery(productName);
   const  {cart } = useAppSelector((state) => state.cart);
-  console.log(cart)
+  // console.log(cart)
   const dispatch=useAppDispatch()
 //   console.log(data.data, "from single elem");
 
@@ -31,10 +32,10 @@ const SingleProduct = () => {
   }
 
   const clicked=(data:Record<string,unknown>)=>{
-    console.log(data._id,"from id")
+    // console.log(data._id,"from id")
 
     const product=cart.filter((eachProduct)=>eachProduct._id==data._id)
-    console.log(product)
+    // console.log(product)
 
     if(product?.length==0){
       dispatch(addProduct({
@@ -44,6 +45,8 @@ const SingleProduct = () => {
         quantity: 1,
 
       }))
+      dispatch(total(0))
+
 
       return toast.success('Product Added!', {
         style: {
@@ -54,14 +57,38 @@ const SingleProduct = () => {
       })
     }
     else{
-      dispatch(updateCart(data as Record<string, unknown>))
-      return toast.success('Product Added!', {
-        style: {
-          fontFamily: 'Cormorant Infant, sans-serif', 
-          color: 'black',
-          fontSize: '20px'
-        },
+
+      cart.filter((each)=>{
+        if (each._id==data._id){
+          // console.log("enter")
+          
+          const newValue=each.quantity+1
+          console.log(each,newValue,data.quantity)
+          if(newValue>data.quantity){
+            return toast.error('Quantity exceeded', {
+              style: {
+                fontFamily: 'Cormorant Infant, sans-serif', 
+                color: 'black',
+                fontSize: '20px'
+              },
+            })
+
+          }
+          else{
+            dispatch(updateCart(data as Record<string, unknown>))
+            dispatch(total(0))
+            return toast.success('Product Added!', {
+              style: {
+                fontFamily: 'Cormorant Infant, sans-serif', 
+                color: 'black',
+                fontSize: '20px'
+              },
+            })
+
+          }
+        }
       })
+
 
 
     }

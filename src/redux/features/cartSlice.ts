@@ -8,11 +8,13 @@ type TCart = {
 };
 type TinitialState={
     cart:TCart[];
+    total:number
 }
 
 const initialState:TinitialState = {
  
-   cart:[]
+   cart:[],
+   total:0
   
 };
 const cartSlice = createSlice({
@@ -33,10 +35,23 @@ const cartSlice = createSlice({
 
         // state.cart.push(action.payload)
       },
+    total: (state, action) => {
+        // console.log(state.cart,action.payload)
+        let totalV=0
+        const totalValue=state.cart.map((each,index)=>{
+            
+                totalV+=each.quantity
+            
+        })
+        console.log(totalValue,"total qu")
+        state.total=totalV
+
+        // state.cart.push(action.payload)
+      },
      
   },
 });
 
-export const { addProduct,updateCart} = cartSlice.actions;
+export const { addProduct,updateCart,total} = cartSlice.actions;
 
 export default cartSlice.reducer;
