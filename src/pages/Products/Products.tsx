@@ -7,12 +7,18 @@ import { useGetAllProductsQuery } from "../../redux/features/productApi";
 import { IoMdStar } from "react-icons/io";
 import { LiaDollarSignSolid } from "react-icons/lia";
 import { Link, NavLink } from "react-router-dom";
+import { useAppSelector } from "../../redux/hook";
 const Products = () => {
-  const { data,  isLoading } =  useGetAllProductsQuery(undefined, {
+  const  product  = useAppSelector((state) => state.product);
+
+  const { data, isLoading, isError } = useGetAllProductsQuery( product, {
     pollingInterval: 1000,
   });
-console.log(data,"from all products")
-if(isLoading){
+  // const { data,  isLoading,isError } =  useGetAllProductsQuery(undefined, {
+  //   pollingInterval: 1000,
+  // });
+// console.log(data,"from all products")
+if(isLoading || !data){
   return <div className="min-h-screen flex justify-center items-center">
     <ThreeDots
   visible={true}
@@ -26,6 +32,13 @@ if(isLoading){
   />
   </div>
 }
+if(isError || !data){
+  return <div className="min-h-screen flex justify-center items-center">
+    <p>something went wrong</p>
+  </div>
+}
+
+
   return (
     <div className="prod pb-36 flex flex-col items-center px-4 relative">
       <div className="flex justify-end w-full pr-10 absolute top-[33%]">

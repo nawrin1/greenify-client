@@ -5,15 +5,17 @@ const productApi= baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       
-        query: () =>  {
-            // const param = new URLSearchParams(); 
-            // console.log(param);
+        query: (product) =>  {
+          console.log(product,"from api")
+            const param = new URLSearchParams(); 
+            console.log(param);
             // if (product) {
-            //   param.append("products from api", product);
+            //   param.append("product",product);
             // }
             return {
               url: `/products`,
               method: "GET",
+              params:product
               
             };
           },

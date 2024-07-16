@@ -58,9 +58,73 @@
     position: relative;
     
 }
+.herbs{
+    background-image: url('../../assets/rosemary.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    
+    position: relative;
+    
+}
+.angiosperms{
+    background-image: url('../../assets/hydrangea.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    
+    position: relative;
+    
+}
+.succulent{
+    background-image: url('../../assets/junior-rodriguez-gsCecg8nrAY-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    
+    position: relative;
+    
+}
+.snake{
+    background-image: url('../../assets/snake.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    
+    position: relative;
+    
+}
+.cacti{
+    background-image: url('../../assets/pear.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    
+    position: relative;
+    
+}
 .product:hover{
     outline: 2px solid green;
 }
+
+
+.container:hover .outer-circle {
+    opacity: 1;
+  }
+  
+  .outer-circle {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .succulent-container {
+    position: relative;
+  }
+  
+  .succulent {
+    z-index: 1;
+  }
+  
 
 
 

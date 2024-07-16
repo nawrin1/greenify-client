@@ -5,9 +5,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css'
+import { useAppDispatch } from '../../redux/hook';
+import { search } from '../../redux/features/productSlice';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const dispatch=useAppDispatch()
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -46,7 +49,7 @@ const Navbar = () => {
                     {/* Search Input and Cart Dropdown */}
                     <div className="flex justify-end">
                         <div className=''>
-                            <Input placeholder="Search" />
+                            <Input onChange={(event)=>dispatch(search(event?.target.value))}placeholder="Search" />
                         </div>
                         {/* Cart Dropdown */}
                         <div className="dropdown dropdown-end">
