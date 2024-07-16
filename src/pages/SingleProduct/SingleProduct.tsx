@@ -2,12 +2,19 @@ import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../redux/features/productApi";
 import { ThreeDots } from "react-loader-spinner";
 import { IoMdStar } from "react-icons/io";
+import { toast, ToastContainer } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { addProduct, updateCart } from "../../redux/features/cartSlice";
 
 const SingleProduct = () => {
   const { productName } = useParams();
   // console.log(productName,"from single elem")
   const { data, isLoading } = useGetSingleProductQuery(productName);
+  const  {cart } = useAppSelector((state) => state.cart);
+  console.log(cart)
+  const dispatch=useAppDispatch()
 //   console.log(data.data, "from single elem");
+
   if(isLoading || !data){
     return <div className="min-h-screen flex justify-center items-center">
       <ThreeDots
@@ -23,6 +30,45 @@ const SingleProduct = () => {
     </div>
   }
 
+  const clicked=(data:Record<string,unknown>)=>{
+    console.log(data._id,"from id")
+
+    const product=cart.filter((eachProduct)=>eachProduct._id==data._id)
+    console.log(product)
+
+    if(product?.length==0){
+      dispatch(addProduct({
+        _id: data._id as string,
+        title: data.title as string,
+        price: data.price as number,
+        quantity: 1,
+
+      }))
+
+      return toast.success('Product Added!', {
+        style: {
+          fontFamily: 'Cormorant Infant, sans-serif', 
+          color: 'black',
+          fontSize: '20px'
+        },
+      })
+    }
+    else{
+      dispatch(updateCart(data as Record<string, unknown>))
+      return toast.success('Product Added!', {
+        style: {
+          fontFamily: 'Cormorant Infant, sans-serif', 
+          color: 'black',
+          fontSize: '20px'
+        },
+      })
+
+
+    }
+
+
+  }
+ console.log(cart,"from single")
   return (
 <div className="flex w-full h-screen">
   <div className="bg-[#e8e8e8] w-[15%] h-screen flex justify-center items-center">
@@ -56,10 +102,11 @@ const SingleProduct = () => {
 
     <div className="lg:pt-[20%] pt-[10%] flex flex-col ">
     <p className="lg:text-xl text-[15px] md:text-[16px] mb-3">Price: ${data?.data?.price}</p>
-    <button className="relative shadow-sm shadow-slate-600 rounded-sm lg:w-[150px] lg:h-[40px] w-[100px] h-[20px] overflow-hidden border border-black group-hover:border-white text-black bg-white transition-all duration-500 ease-out group">
+    <button onClick={()=>clicked(data?.data)} className="relative shadow-sm shadow-slate-600 rounded-sm lg:w-[150px] lg:h-[40px] w-[100px] h-[20px] overflow-hidden border border-black group-hover:border-white text-black bg-white transition-all duration-500 ease-out group">
   <span className="absolute inset-0 w-full h-full bg-black transform translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0"></span>
   <span className="relative z-10 flex items-center justify-center h-full text-black transition-colors duration-500 ease-out group-hover:text-white lg:text-xl text-[15px]">Add to Cart</span>
 </button>
+
     </div>
 
 
