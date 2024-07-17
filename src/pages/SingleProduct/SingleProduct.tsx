@@ -111,6 +111,7 @@ const SingleProduct = () => {
   <div className="bg-[#e8e8e8] w-[50%] h-screen lg:px-10 px-2">
     <div className="pt-20">
       <h1 className="lg:text-4xl text-2xl md:text-3xl">{data?.data?.title}</h1>
+      {/* <h1 className="lg:text-4xl text-2xl md:text-3xl">{data?.data?.quantity}</h1> */}
     </div>
     <div className="pt-2">
       <h1 className="lg:text-xl text-[15px] md:text-[16px]">Category: {data?.data?.category}</h1>

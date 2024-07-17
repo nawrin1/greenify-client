@@ -31,6 +31,7 @@ const productSlice = createSlice({
       sorted: (state, action: PayloadAction<string>) => {
         state.sort = action.payload;
       },
+
   },
 });
 

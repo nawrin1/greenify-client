@@ -3,11 +3,12 @@ import { Input } from "@mui/material";
 import { FaLeaf } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from 'react-icons/im';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { search } from '../../redux/features/productSlice';
 import useBeforeUnload from '../../components/hooks/reload';
+import { PiEmptyBold } from 'react-icons/pi';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -146,15 +147,21 @@ const Navbar = () => {
 
                 </div>
                 <div>
+                    <Link to={`/checkout`}>
                 <button className="relative shadow-sm shadow-slate-600 rounded-sm w-full h-[40px] overflow-hidden border border-black group-hover:border-white text-black bg-white transition-all duration-500 ease-out group">
   <span className="absolute inset-0 w-full h-full bg-black transform translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0"></span>
   <span className="relative z-10 flex items-center justify-center h-full text-black transition-colors duration-500 ease-out group-hover:text-white lg:text-xl text-[15px]">CheckOut</span>
 </button>
+</Link>
                 </div>
             </div>
             
            : (
-            <li className='text-xl '>Cart is empty!</li>
+            <div className='text-xl text-center flex justify-center '><p>Cart is empty!</p>
+            <div className='pt-1'>
+                <PiEmptyBold />
+            </div>
+            </div>
           )}
             
 
@@ -199,6 +206,10 @@ const Navbar = () => {
                             <li>Product Manage</li>
                 </ul>
             </div>
+
+
+            {/* modal */}
+            
         </div>
     );
 };

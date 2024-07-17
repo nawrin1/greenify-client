@@ -19,6 +19,7 @@ const productApi= baseApi.injectEndpoints({
               
             };
           },
+          providesTags: ["product"],
     }),
     getSingleProduct: builder.query({
       
@@ -31,8 +32,23 @@ const productApi= baseApi.injectEndpoints({
               
             };
           },
+          providesTags: ["product"],
+    }),
+    updateQuantity: builder.mutation({
+      
+        query: (data) =>  {
+          console.log(data,"updatequantity")
+
+            return {
+              url: `/products/quantity`,
+              method: "PATCH",
+              body:data
+              
+            };
+          },
+        invalidatesTags: ["product"]
     }),
   }),
 });
 
-export const { useGetAllProductsQuery,useGetSingleProductQuery} = productApi;
+export const { useGetAllProductsQuery,useGetSingleProductQuery,useUpdateQuantityMutation} = productApi;
