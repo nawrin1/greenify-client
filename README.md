@@ -1,13 +1,13 @@
-# Project Name: Greenify
-## Introduction
+# Project Name: Greenify :herb:
+## Introduction :cactus:
 
 Greenify is an online nursery website where users can browse, filter, and search for plants and gardening products. Users can add products to their cart, proceed to checkout, and make payments securely via Stripe.js. The website also features a product and category management section for CRUD operations.
 
-## Description
+## Description :seedling:
 
 Greenify aims to provide a seamless online shopping experience for plant enthusiasts. The website offers a variety of features, including advanced filtering and searching, real-time updates for product management, and secure payment options. The user interface is designed to be intuitive and visually appealing, enhancing the overall user experience.
 
-## Features
+## Features :shamrock:
 1. Public Routes: Accessible without authentication.
 2. Product and Category Management:
    - Product List Table with image, title, price, category, and actions.
@@ -20,12 +20,12 @@ Greenify aims to provide a seamless online shopping experience for plant enthusi
    - Add to Cart functionality with quantity management.
    - Proceed to Checkout option.
 
-## Technology Stack
+## Technology Stack :computer:
 - Frontend: React, Redux
 - Backend: Node.js, Express.js, Typescript
 - Database: MongoDB
 
-## Installation Guidelines
+## Installation Guidelines :mag_right:
 - [x] clone the repository
 ```
 git clone repolink
@@ -35,7 +35,7 @@ git clone repolink
 npm install
 ```
 
-## Configuration for server site
+## Configuration for server site :bookmark_tabs:
 
 - [x] First of all clone the git repository of the server of the project. Then use npm install to install necessary packages. If not all dependencies are installed you need to install these
 ```
