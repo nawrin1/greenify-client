@@ -10,12 +10,12 @@ Greenify aims to provide a seamless online shopping experience for plant enthusi
 ## Features
 1. Public Routes: Accessible without authentication.
 2. Product and Category Management:
-  - Product List Table with image, title, price, category, and actions.
-  - Action Buttons for updating and deleting products.
-  - Adding or updating a Product form with category, title, price, quantity, description, rating, and image upload.
+   - Product List Table with image, title, price, category, and actions.
+   - Action Buttons for updating and deleting products.
+   - Adding or updating a Product form with category, title, price, quantity, description, rating, and image upload.
 3. Product Browsing:
-  - Filtering, Pagination, Sorting, and Searching.
-  - Detailed Product Information.
+   - Filtering, Pagination, Sorting, and Searching.
+   - Detailed Product Information.
 4. Shopping Cart:
    - Add to Cart functionality with quantity management.
    - Proceed to Checkout option.
