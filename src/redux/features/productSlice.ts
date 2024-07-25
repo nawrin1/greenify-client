@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import type { PayloadAction } from "@reduxjs/toolkit";
 type TFilter = {
   searchValue: string;
@@ -38,3 +39,5 @@ const productSlice = createSlice({
 export const { search, maxPrice, minPrice, sorted } = productSlice.actions;
 
 export default productSlice.reducer;
+
+

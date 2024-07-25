@@ -1,0 +1,9 @@
+.transform p {
+    
+    transition: letter-spacing 0.3s ease-in-out;
+  }
+
+  
+  .transform:hover p {
+    letter-spacing: 0.5em; /* Adjust the value as needed */
+  }

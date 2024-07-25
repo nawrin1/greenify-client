@@ -78,25 +78,25 @@ const Checkout = () => {
                     <div className="space-y-4 bg-white p-6 rounded shadow-lg">
                         <div className="flex items-center space-x-2">
                             <MdDriveFileRenameOutline className='text-3xl pt-2'/>
-                            <Input placeholder="Customer name" name="customerName" fullWidth />
+                            <Input required placeholder="Customer name" name="customerName" fullWidth />
                         </div>
                         <div className="flex items-center space-x-2">
                         <FaPhone className='text-2xl pt-2'/>
-                            <Input placeholder="Phone" name="phone" fullWidth />
+                            <Input required placeholder="Phone" name="phone" fullWidth />
                         </div>
                         <div className="flex items-center space-x-2">
                         <SiHomeadvisor className='text-3xl pt-2'/>
-                            <Input placeholder="Address" name="address" fullWidth />
+                            <Input required placeholder="Address" name="address" fullWidth />
                         </div>
                         <div className="flex items-center space-x-2">
                         <GiMoneyStack className='text-3xl pt-1' />
-                            <input className="ml-2"type="radio" id="cash" name="paymentMethod" value="cash" />
+                            <input required className="ml-2"type="radio" id="cash" name="paymentMethod" value="cash" />
                             <p className='lg:text-xl md:text-xl text-[18px] lg:pl-2 md:pl-2 '>Pay with Cash</p>
                             </div>
                             <button type="submit"className="relative shadow-sm shadow-slate-600 rounded-sm w-full h-[35px] overflow-hidden border border-black group-hover:border-white text-black bg-white transition-all duration-500 ease-out group">
-  <span className="absolute inset-0 w-full h-full bg-black transform translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0"></span>
-  <span className="relative z-10 flex items-center justify-center h-full text-black transition-colors duration-500 ease-out group-hover:text-white lg:text-xl text-[15px]">Order Confirmed</span>
-</button>
+                            <span className="absolute inset-0 w-full h-full bg-black transform translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0"></span>
+                            <span className="relative z-10 flex items-center justify-center h-full text-black transition-colors duration-500 ease-out group-hover:text-white lg:text-xl text-[15px]">Order Confirmed</span>
+                            </button>
                         {/* Payment options can be added here */}
                     </div>
                 </form>

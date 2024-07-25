@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from "@mui/material";
 import { FaLeaf } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from 'react-icons/im';
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
-import { useAppDispatch, useAppSelector } from '../../redux/hook';
-import { search } from '../../redux/features/productSlice';
+import {  useAppDispatch, useAppSelector } from '../../redux/hook';
+
 import useBeforeUnload from '../../components/hooks/reload';
 import { PiEmptyBold } from 'react-icons/pi';
+import { debouncedSearch } from './Debounce';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isCart,setCart]=useState(false)
+    const [searchTerm, setSearchTerm] = useState('');
     const dispatch=useAppDispatch()
     const {total}=useAppSelector((state) => state.cart)
     const {cart}=useAppSelector((state) => state.cart)
@@ -25,6 +27,13 @@ const Navbar = () => {
     const cartToggle=()=>{
         setCart(!isCart)
     }
+    useEffect(() => {
+        debouncedSearch(dispatch,searchTerm);
+    }, [searchTerm]);
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0)
     useBeforeUnload(cart.length !== 0);
 
@@ -55,13 +64,19 @@ const Navbar = () => {
                         }>
                             <li className='a'>Products</li>
                         </NavLink>
-                            <li>Product Manage</li>
+                        <NavLink to='/manage' className={({ isActive }) =>
+                        isActive ? "active" : ""
+                        }>
+                            <li className='a'>Product Manage</li>
+                        </NavLink>
+                            
                         </ul>
                     </div>
                     {/* Search Input and Cart Dropdown */}
                     <div className="flex justify-end">
                         <div className=''>
-                            <Input onChange={(event)=>dispatch(search(event?.target.value))}placeholder="Search" />
+                            {/* <Input onChange={(event)=>dispatch(search(event?.target.value))}placeholder="Search" /> */}
+                            <Input  onChange={handleSearchChange} placeholder="Search" />
                         </div>
                         {/* Cart Dropdown */}
                         {/* <div className="dropdown dropdown-end">
@@ -183,7 +198,7 @@ const Navbar = () => {
 
 
             
-            <div className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-50 lg:hidden transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={toggleSidebar}>
+            <div className={`fixed inset-0  bg-gray-900 bg-opacity-50 z-50 lg:hidden transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={toggleSidebar}>
 
             </div>
             <div className={`fixed inset-y-0 left-0 bg-white w-64 z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
@@ -203,7 +218,13 @@ const Navbar = () => {
                         }>
                             <li className='a'>Products</li>
                         </NavLink>
-                            <li>Product Manage</li>
+
+                        <NavLink to='/manage' className={({ isActive }) =>
+                        isActive ? "active" : ""
+                        }>
+                            <li className='a'>Product Manage</li>
+                        </NavLink>
+                           
                 </ul>
             </div>
 

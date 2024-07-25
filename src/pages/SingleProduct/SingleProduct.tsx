@@ -2,10 +2,13 @@ import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../redux/features/productApi";
 import { ThreeDots } from "react-loader-spinner";
 import { IoMdStar } from "react-icons/io";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { addProduct, total, updateCart } from "../../redux/features/cartSlice";
-import { PiExamThin } from "react-icons/pi";
+import { useEffect } from "react";
+import Aos from 'aos';
+import "aos/dist/aos.css";
+import './SingleProduct.css'
 
 const SingleProduct = () => {
   const { productName } = useParams();
@@ -15,6 +18,13 @@ const SingleProduct = () => {
   // console.log(cart)
   const dispatch=useAppDispatch()
 //   console.log(data.data, "from single elem");
+
+useEffect(() => {
+  Aos.init({
+      duration:1500
+  });
+  Aos.refresh();
+}, []);
 
   if(isLoading || !data){
     return <div className="min-h-screen flex justify-center items-center">
@@ -30,6 +40,8 @@ const SingleProduct = () => {
     />
     </div>
   }
+
+  
 
   const clicked=(data:Record<string,unknown>)=>{
     // console.log(data._id,"from id")
@@ -64,7 +76,7 @@ const SingleProduct = () => {
           
           const newValue=each.quantity+1
           console.log(each,newValue,data.quantity)
-          if(newValue>data.quantity){
+          if(newValue>(data.quantity as number)){
             return toast.error('Quantity exceeded', {
               style: {
                 fontFamily: 'Cormorant Infant, sans-serif', 
@@ -105,7 +117,7 @@ const SingleProduct = () => {
   </div>
 
   <div className="bg-white w-[35%] h-[100%] flex justify-center items-center">
-    <img src={data?.data?.image} className="h-[90%] w-[80%] object-contain " alt="" />
+    <img src={data?.data?.image}  data-aos="fade-in" data-aos-duration="3000" className="h-[90%] w-[80%] object-contain " alt="" />
   </div>
 
   <div className="bg-[#e8e8e8] w-[50%] h-screen lg:px-10 px-2">

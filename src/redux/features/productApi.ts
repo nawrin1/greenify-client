@@ -8,7 +8,7 @@ const productApi= baseApi.injectEndpoints({
         query: (product) =>  {
           console.log(product,"from api")
             const param = new URLSearchParams(); 
-            console.log(param);
+            // console.log(param);
             // if (product) {
             //   param.append("product",product);
             // }
@@ -48,7 +48,53 @@ const productApi= baseApi.injectEndpoints({
           },
         invalidatesTags: ["product"]
     }),
+    deleteProduct: builder.mutation({
+      
+        query: (id) =>  {
+          console.log(id,"del prod")
+
+            return {
+              url: `/products/${id}`,
+              method: "DELETE",
+             
+              
+            };
+          },
+        invalidatesTags: ["product"]
+    }),
+    updateProduct: builder.mutation({
+      
+        query: (product) =>  {
+         
+          console.log(product.options,"update prod data")
+
+            return {
+              url: `/products/update/${product.id}`,
+              method: "PATCH",
+              body:product.options
+             
+              
+            };
+          },
+        invalidatesTags: ["product"]
+    }),
+    addProduct: builder.mutation({
+      
+        query: (product) =>  {
+         
+          console.log(product,"add prod")
+
+            return {
+              url: `/products`,
+              method: "POST",
+              body:product
+             
+              
+            };
+          },
+        invalidatesTags: ["product"]
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery,useGetSingleProductQuery,useUpdateQuantityMutation} = productApi;
+export const { useGetAllProductsQuery,useGetSingleProductQuery,useUpdateQuantityMutation,useDeleteProductMutation,useUpdateProductMutation,useAddProductMutation} = productApi;
