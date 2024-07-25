@@ -7,7 +7,7 @@ const productApi= baseApi.injectEndpoints({
       
         query: (product) =>  {
           console.log(product,"from api")
-            const param = new URLSearchParams(); 
+            // const param = new URLSearchParams(); 
             // console.log(param);
             // if (product) {
             //   param.append("product",product);

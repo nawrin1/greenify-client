@@ -14,7 +14,16 @@ import { addProduct, total, updateCart } from "../../redux/features/cartSlice";
 import { PiEmptyBold } from "react-icons/pi";
 // import { useState } from "react";
 
-
+interface Product {
+  _id: string;
+  title: string;
+  category: string;
+  price: number;
+  quantity: number;
+  description: string;
+  rating: number;
+  image: string;
+}
 const AllProducts = () => {
 
 
@@ -63,8 +72,9 @@ const AllProducts = () => {
 
 
     const clicked = (
-      event: React.MouseEvent<HTMLButtonElement>,
-      data: Record<string, unknown>
+      event:  React.MouseEvent<HTMLDivElement>,
+      
+      data: Product
     ) => {
       event.preventDefault();
       event.stopPropagation();
@@ -107,7 +117,8 @@ const AllProducts = () => {
                 },
               });
             } else {
-              dispatch(updateCart(data as Record<string, unknown>));
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              dispatch(updateCart(data as any));
               dispatch(total(0));
               return toast.success("Product Added!", {
                 style: {
@@ -150,7 +161,7 @@ const AllProducts = () => {
         </div>
         <div className="flex justify-end w-full  ">
       <div className="dropdown dropdown-left dropdown-end pt-4">
-      <div tabIndex={0} role="button" className=" bg-slate-200 hover:bg-black hover:text-white rounded-lg w-[100px] h-[35px] px-4 py-2 m-1 text-xl flex items-center"><p>Filter</p> <div className="text-2xl  pl-2"><IoFilter /></div></div>
+      <div tabIndex={0} role="button" className=" bg-[#d4d4d4] hover:bg-black hover:text-white rounded-lg w-[100px] h-[35px] px-4 py-2 m-1 text-xl flex items-center"><p>Filter</p> <div className="text-2xl  pl-2"><IoFilter /></div></div>
       <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-lg w-32 p-2 shadow">
         <li ><Input onChange={(event)=>dispatch(minPrice(parseInt(event?.target.value)))}placeholder="min Price" /></li>
         <li ><Input onChange={(event)=>dispatch(maxPrice(parseInt(event?.target.value)))}placeholder="max Price" /></li>
@@ -164,7 +175,7 @@ const AllProducts = () => {
 
           {
             data.data?.length>0?
-            <div className=" grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mb-20">        {data.data.map((product, idx) => (
+            <div className=" grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mb-20">        {data.data.map((product:Product, idx:number) => (
               <Link to={`/products/${product.title}`}>
                 <div key={idx} className="card  bg-slate-500   ">
                   <div className="absolute flex justify-end w-full">

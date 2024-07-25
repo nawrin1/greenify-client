@@ -35,10 +35,10 @@ const cartSlice = createSlice({
 
         // state.cart.push(action.payload)
       },
-    total: (state, action) => {
-        // console.log(state.cart,action.payload)
+    total: (state,action) => {
+        console.log(action)
         let totalV=0
-        const totalValue=state.cart.map((each,index)=>{
+        const totalValue=state.cart.map((each)=>{
             
                 totalV+=each.quantity
             

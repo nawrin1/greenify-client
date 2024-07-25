@@ -1,14 +1,43 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { ThreeDots } from "react-loader-spinner";
 import { useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation, useAddProductMutation } from "../../redux/features/productApi";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import Swal from "sweetalert2";
-import { Backdrop, Box, Fade, FormControl, Input, MenuItem, Modal, Select } from '@mui/material';
+import {  Box, Fade, FormControl, Input, MenuItem, Modal, Select } from '@mui/material';
 import { toast } from 'react-toastify';
-import { FaLeaf } from 'react-icons/fa';
+// import { FaLeaf } from 'react-icons/fa';
+
+interface Product {
+  _id: string;
+  title: string;
+  category: string;
+  price: number;
+  quantity: number;
+  description: string;
+  rating: number;
+  image: string;
+}
+
+// interface Products {
+//   _id: string;
+//   title: string;
+//   category: string;
+//   price: string; 
+//   quantity: string; 
+//   description: string;
+//   rating: string;
+//   image: string;
+// }
+
+type FormElements = HTMLFormElement & {
+  elements: {
+    namedItem(name: string): HTMLInputElement | HTMLSelectElement | null;
+  };
+};
 
 const style = {
+  // eslint-disable-next-line @typescript-eslint/prefer-as-const
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
@@ -28,10 +57,10 @@ const Manage = () => {
     _id:'',
     title: '',
     category: '',
-    price: '',
-    quantity: '',
+    price: 0 ,
+    quantity: 0,
     description: '',
-    rating: '',
+    rating: 0,
     image: ''
   });
   const { data, isLoading, isError } = useGetAllProductsQuery({}, {
@@ -41,7 +70,7 @@ const Manage = () => {
   const [updateProduct] = useUpdateProductMutation();
   const [addProduct] = useAddProductMutation();
 
-  const handleOpen = (product) => {
+  const handleOpen = (product:Product) => {
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -56,10 +85,10 @@ const Manage = () => {
       _id: '',
       title: '',
       category: '',
-      price: '',
-      quantity: '',
+      price: 0,
+      quantity: 0,
       description: '',
-      rating: '',
+      rating: 0,
       image: ''
     });
   };
@@ -68,16 +97,68 @@ const Manage = () => {
     setAddOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e:unknown) => {
+  //   e.preventDefault();
+  //   const updatedProduct = {
+  //     title: e.target.elements.title.value,
+  //     category: selectedProduct.category,
+  //     price: parseInt(e.target.elements.price.value),
+  //     quantity: parseInt(e.target.elements.quantity.value),
+  //     description: e.target.elements.description.value,
+  //     rating: parseInt(e.target.elements.rating.value),
+  //     image: e.target.elements.image.value,
+  //   };
+  //   toast.success('Product Updated!', {
+  //       style: {
+  //         fontFamily: 'Cormorant Infant, sans-serif', 
+  //         color: 'black',
+  //         fontSize: '20px'
+  //       },
+  //     });
+
+  //   const updatedData = {
+  //     id: selectedProduct._id,
+  //     options: updatedProduct
+  //   };
+  //   updateProduct(updatedData);
+  //   handleClose();
+  // };
+
+  // const handleAddSubmit = (e) => {
+  //   e.preventDefault();
+  //   const newProduct = {
+  //     title: e.target.elements.title.value,
+  //     category: e.target.elements.category.value,
+  //     price: parseInt(e.target.elements.price.value),
+  //     quantity: parseInt(e.target.elements.quantity.value),
+  //     description: e.target.elements.description.value,
+  //     rating: parseInt(e.target.elements.rating.value),
+  //     image: e.target.elements.image.value,
+  //   };
+  //   toast.success('Product Added!', {
+  //       style: {
+  //         fontFamily: 'Cormorant Infant, sans-serif', 
+  //         color: 'black',
+  //         fontSize: '20px'
+  //       },
+  //     });
+  //   console.log(newProduct)
+  //   addProduct(newProduct);
+  //   handleAddClose();
+  // };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget as FormElements;
+
     const updatedProduct = {
-      title: e.target.elements.title.value,
-      category: selectedProduct.category,
-      price: parseInt(e.target.elements.price.value),
-      quantity: parseInt(e.target.elements.quantity.value),
-      description: e.target.elements.description.value,
-      rating: parseInt(e.target.elements.rating.value),
-      image: e.target.elements.image.value,
+      title: (form.elements.namedItem("title") as HTMLInputElement)?.value,
+      category: (form.elements.namedItem("category") as HTMLSelectElement)?.value,
+      price: parseInt((form.elements.namedItem("price") as HTMLInputElement)?.value),
+      quantity: parseInt((form.elements.namedItem("quantity") as HTMLInputElement)?.value),
+      description: (form.elements.namedItem("description") as HTMLInputElement)?.value,
+      rating: parseInt((form.elements.namedItem("rating") as HTMLInputElement)?.value),
+      image: (form.elements.namedItem("image") as HTMLInputElement)?.value,
     };
     toast.success('Product Updated!', {
         style: {
@@ -95,17 +176,19 @@ const Manage = () => {
     handleClose();
   };
 
-  const handleAddSubmit = (e) => {
+  const handleAddSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newProduct = {
-      title: e.target.elements.title.value,
-      category: e.target.elements.category.value,
-      price: parseInt(e.target.elements.price.value),
-      quantity: parseInt(e.target.elements.quantity.value),
-      description: e.target.elements.description.value,
-      rating: parseInt(e.target.elements.rating.value),
-      image: e.target.elements.image.value,
-    };
+    const form = e.currentTarget as FormElements;
+
+  const newProduct = {
+    title: (form.elements.namedItem("title") as HTMLInputElement)?.value,
+    category: (form.elements.namedItem("category") as HTMLSelectElement)?.value,
+    price: parseInt((form.elements.namedItem("price") as HTMLInputElement)?.value),
+    quantity: parseInt((form.elements.namedItem("quantity") as HTMLInputElement)?.value),
+    description: (form.elements.namedItem("description") as HTMLInputElement)?.value,
+    rating: parseInt((form.elements.namedItem("rating") as HTMLInputElement)?.value),
+    image: (form.elements.namedItem("image") as HTMLInputElement)?.value,
+  };
     toast.success('Product Added!', {
         style: {
           fontFamily: 'Cormorant Infant, sans-serif', 
@@ -118,7 +201,7 @@ const Manage = () => {
     handleAddClose();
   };
 
-  const handleDelete = (_id) => {
+  const handleDelete = (_id: string) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -199,7 +282,8 @@ const Manage = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.data.map((each, idx) => (
+            
+            {data?.data.map((each:Product, idx: number) => (
               <tr key={idx} className="border-b-1 border-[#bdc468]">
                 <td>
                   <div className="flex items-center gap-3">

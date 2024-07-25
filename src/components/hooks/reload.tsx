@@ -8,7 +8,7 @@ const useBeforeUnload = (message:boolean) => {
         if(!message){
             return
         }
-      const handleBeforeUnload = (event) => {
+      const handleBeforeUnload = (event:BeforeUnloadEvent) => {
         event.preventDefault();
         event.returnValue = message;
         return message;

@@ -1,5 +1,5 @@
 import "./Products.css";
-import img1 from "../../assets/sarah-dorweiler-x2Tmfd1-SgA-unsplash.jpg";
+// import img1 from "../../assets/sarah-dorweiler-x2Tmfd1-SgA-unsplash.jpg";
 import { FaArrowRight, FaLeaf } from "react-icons/fa";
 import { CgShoppingCart } from "react-icons/cg";
 import { ThreeDots } from "react-loader-spinner";
@@ -13,6 +13,17 @@ import { maxPrice, minPrice } from "../../redux/features/productSlice";
 import { Input } from "@mui/material";
 import { addProduct, total, updateCart } from "../../redux/features/cartSlice";
 import { toast } from "react-toastify";
+
+interface Product {
+  _id: string;
+  title: string;
+  category: string;
+  price: number;
+  quantity: number;
+  description: string;
+  rating: number;
+  image: string;
+}
 const Products = () => {
   const product = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
@@ -49,8 +60,8 @@ const Products = () => {
   }
 
   const clicked = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    data: Record<string, unknown>
+    event:  React.MouseEvent<HTMLDivElement>,
+    data: Product
   ) => {
     event.preventDefault();
     event.stopPropagation();
@@ -93,7 +104,7 @@ const Products = () => {
               },
             });
           } else {
-            dispatch(updateCart(data as Record<string, unknown>));
+            dispatch(updateCart(data as unknown as Record<string, unknown> ));
             dispatch(total(0));
             return toast.success("Product Added!", {
               style: {
@@ -136,7 +147,7 @@ const Products = () => {
           <div
             tabIndex={0}
             role="button"
-            className=" bg-slate-200 hover:bg-black hover:text-white rounded-lg w-[100px] h-[35px] px-4 py-2 m-1 text-xl flex items-center"
+            className=" bg-[#d4d4d4] hover:bg-black hover:text-white rounded-lg w-[100px] h-[35px] px-4 py-2 m-1 text-xl flex items-center"
           >
             <p>Filter</p>{" "}
             <div className="text-2xl  pl-2">
@@ -168,7 +179,7 @@ const Products = () => {
       </div>
 
       <div className="w-[70%]  grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mt-20 pb-20">
-        {data.data.slice(0, 6).map((product, idx) => (
+        {data.data.slice(0, 6).map((product:Product, idx:number) => (
           <Link to={`/products/${product.title}`}>
             <div key={idx} className="card  bg-slate-500   ">
               <div className="absolute flex justify-end w-full">

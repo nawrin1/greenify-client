@@ -22,43 +22,73 @@ const Checkout = () => {
     const navigate=useNavigate()
 
     // console.log(cart)
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const customerName = e.target.customerName.value;
-        const phone = e.target.phone.value;
-        const address = e.target.address.value;
-        const paymentMethod = e.target.paymentMethod.value;
-        toast.success('Order Confirmed!', {
-            style: {
-              fontFamily: 'Cormorant Infant, sans-serif', 
-              color: 'black',
-              fontSize: '20px'
-            },
-          })
-          const order={
-            customer:customerName ,
-            phone:phone,
-            address:address,
-            payment:paymentMethod,
-            product:cart
-          }
-          updateQuantity(order)
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const customerName = e.target.customerName.value;
+    //     const phone = e.target.phone.value;
+    //     const address = e.target.address.value;
+    //     const paymentMethod = e.target.paymentMethod.value;
+    //     toast.success('Order Confirmed!', {
+    //         style: {
+    //           fontFamily: 'Cormorant Infant, sans-serif', 
+    //           color: 'black',
+    //           fontSize: '20px'
+    //         },
+    //       })
+    //       const order={
+    //         customer:customerName ,
+    //         phone:phone,
+    //         address:address,
+    //         payment:paymentMethod,
+    //         product:cart
+    //       }
+    //       updateQuantity(order)
           
 
-          dispatch(emptyCart())
-          navigate('/')
+    //       dispatch(emptyCart())
+    //       navigate('/')
 
 
-        //   console.log(cart)
+    //     //   console.log(cart)
 
       
 
         
         
-        console.log(order);
+    //     console.log(order);
         
-    };
+    // };
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const customerName = form.customerName.value;
+        const phone = form.phone.value;
+        const address = form.address.value;
+        const paymentMethod = form.paymentMethod.value;
 
+        toast.success('Order Confirmed!', {
+            style: {
+                fontFamily: 'Cormorant Infant, sans-serif',
+                color: 'black',
+                fontSize: '20px'
+            },
+        });
+
+        const order = {
+            customer: customerName,
+            phone: phone,
+            address: address,
+            payment: paymentMethod,
+            product: cart
+        };
+
+        updateQuantity(order);
+
+        dispatch(emptyCart());
+        navigate('/');
+
+        console.log(order);
+    };
     return (
         <div className="flex w-full h-screen">
         <div className="bg-[#e8e8e8] w-[15%] h-screen flex justify-center items-center">

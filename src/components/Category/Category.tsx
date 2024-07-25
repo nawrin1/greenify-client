@@ -1,7 +1,7 @@
 
 import { FaLeaf } from 'react-icons/fa';
 import './Category.css'
-import image1 from '../../assets/rosemary.jpg'
+// import image1 from '../../assets/rosemary.jpg'
 
 
 const Category = () => {
