@@ -75,7 +75,7 @@ useEffect(() => {
           // console.log("enter")
           
           const newValue=each.quantity+1
-          console.log(each,newValue,data.quantity)
+          // console.log(each,newValue,data.quantity)
           if(newValue>(data.quantity as number)){
             return toast.error('Quantity exceeded', {
               style: {
@@ -107,7 +107,7 @@ useEffect(() => {
 
 
   }
- console.log(cart,"from single")
+//  console.log(cart,"from single")
   return (
 <div className="flex w-full h-screen">
   <div className="bg-[#e8e8e8] w-[15%] h-screen flex justify-center items-center">
