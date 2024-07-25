@@ -11,6 +11,7 @@ import { Input } from "@mui/material";
 import { IoFilter } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { addProduct, total, updateCart } from "../../redux/features/cartSlice";
+import { PiEmptyBold } from "react-icons/pi";
 // import { useState } from "react";
 
 
@@ -122,8 +123,10 @@ const AllProducts = () => {
   
       // event.stopPropagation();
     };
+
+    console.log(data.data)
     return (
-<div className="pt-40 bg-[#e8e8e8] px-2 ">
+<div className="pt-40 bg-[#e8e8e8] px-2 min-h-screen ">
 <div className="flex justify-center ">
 <div className="category flex mx-auto justify-center ">
         <p className="text-[#bdc468]">Our Products</p>
@@ -157,59 +160,71 @@ const AllProducts = () => {
     </div>
         </div>
 
-        <div className="w-[70%]  grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mt-20 pb-20">
-        {data.data.map((product, idx) => (
-          <Link to={`/products/${product.title}`}>
-            <div key={idx} className="card  bg-slate-500   ">
-              <div className="absolute flex justify-end w-full">
-                <div
-                  onClick={(event) => clicked(event,product)}
-                  className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center"
-                >
-                  <p className="text-black text-2xl">
-                    <CgShoppingCart />
-                  </p>
-                </div>
-              </div>
-              <img
-                className="h-[350px] w-[250px] object-fill"
-                src={product.image}
-                alt=""
-              />
-              <div className="intro">
-                <div className="flex justify-between">
-                  <div className="">
-                    <div>
-                      <h1 className="text-[22px] text-wrap overflow-hidden">
-                        {product.title}{" "}
-                      </h1>
-                      <div className="flex ">
-                        <p className="text-2xl">{product.rating} </p>
-                        <div className="text-yellow-300 text-xl mt-1">
-                          <IoMdStar />
+        <div className="flex justify-center items-center">
+
+          {
+            data.data?.length>0?
+            <div className=" grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mb-20">        {data.data.map((product, idx) => (
+              <Link to={`/products/${product.title}`}>
+                <div key={idx} className="card  bg-slate-500   ">
+                  <div className="absolute flex justify-end w-full">
+                    <div
+                      onClick={(event) => clicked(event,product)}
+                      className="shop w-[40px] h-[40px] bg-[#d4d4d4] rounded-full flex  justify-center items-center"
+                    >
+                      <p className="text-black text-2xl">
+                        <CgShoppingCart />
+                      </p>
+                    </div>
+                  </div>
+                  <img
+                    className="h-[350px] w-[250px] object-fill"
+                    src={product.image}
+                    alt=""
+                  />
+                  <div className="intro">
+                    <div className="flex justify-between">
+                      <div className="">
+                        <div>
+                          <h1 className="text-[22px] text-wrap overflow-hidden">
+                            {product.title}{" "}
+                          </h1>
+                          <div className="flex ">
+                            <p className="text-2xl">{product.rating} </p>
+                            <div className="text-yellow-300 text-xl mt-1">
+                              <IoMdStar />
+                            </div>
+                          </div>
+                        </div>
+                        {/* <div>
+                          <p className="text-2xl mt-0">{product.rating}</p>
+                          </div> */}
+                      </div>
+                      <div className="flex">
+                        <p className="text-xl ">{product.price}</p>
+                        <div className=" text-xl mt-1">
+                          <LiaDollarSignSolid />
                         </div>
                       </div>
                     </div>
-                    {/* <div>
-                      <p className="text-2xl mt-0">{product.rating}</p>
-                      </div> */}
-                  </div>
-                  <div className="flex">
-                    <p className="text-xl ">{product.price}</p>
-                    <div className=" text-xl mt-1">
-                      <LiaDollarSignSolid />
-                    </div>
+                    <p className="para text-xl">Category: {product.category}</p>
+                    <p className="para text-[16px] text-[#f3f3f3] overflow-ellipsis">
+                      {product.description}
+                    </p>
+                    <p></p>
                   </div>
                 </div>
-                <p className="para text-xl">Category: {product.category}</p>
-                <p className="para text-[16px] text-[#f3f3f3] overflow-ellipsis">
-                  {product.description}
-                </p>
-                <p></p>
-              </div>
+              </Link>
+            ))}</div>
+            :(
+              <div className='text-2xl text-center flex justify-center pb-20 pt-10'><p>No Product Matched!</p>
+            <div className='pt-1'>
+                <PiEmptyBold />
             </div>
-          </Link>
-        ))}
+            </div>
+            )
+          }
+
       </div>
 </div>
     );

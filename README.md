@@ -102,6 +102,16 @@ PORT=5000
 DATABASE_URL=your_db_uri
 ```
 
+### Usage
+- [x] To run client site use command
+```
+npm run dev
+```
+- [x] To start server you need to use
+```
+npm run start:dev
+```
+
 
 
 
