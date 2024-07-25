@@ -17,12 +17,12 @@ Greenify aims to provide a seamless online shopping experience for plant enthusi
   - Filtering, Pagination, Sorting, and Searching.
   - Detailed Product Information.
 4. Shopping Cart:
-  - Add to Cart functionality with quantity management.
-  - Proceed to Checkout option.
+   - Add to Cart functionality with quantity management.
+   - Proceed to Checkout option.
 
 ## Technology Stack
 - Frontend: React, Redux
-- Backend: Node.js, Express.js
+- Backend: Node.js, Express.js, Typescript
 - Database: MongoDB
 
 ## Installation Guidelines
