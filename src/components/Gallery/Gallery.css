@@ -30,7 +30,7 @@
 
 .gal {
     position: relative;
-    overflow: hidden; /* Ensure the pseudo-element does not overflow the container */
+    overflow: hidden; 
 }
 
 .gal::before {
@@ -44,12 +44,13 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.5; /* Adjust this value to change the opacity of the background image */
+    opacity: 0.5; 
     z-index: -1; 
     
     
-    /* Ensure the pseudo-element is behind the content */
-}
+    
+} 
+
 
 
 

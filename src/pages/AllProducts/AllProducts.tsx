@@ -82,6 +82,15 @@ const AllProducts = () => {
   
       const product = cart.filter((eachProduct) => eachProduct._id == data._id);
       // console.log(product)
+      if (data.quantity <=0){
+        return toast.error("Not Available", {
+          style: {
+            fontFamily: "Cormorant Infant, sans-serif",
+            color: "black",
+            fontSize: "20px",
+          },
+        })
+      }
   
       if (product?.length == 0) {
         dispatch(
@@ -103,7 +112,16 @@ const AllProducts = () => {
         });
       } else {
         cart.filter((each) => {
-          if (each._id == data?._id) {
+          if (data.quantity <=0){
+            return toast.error("Not Available", {
+              style: {
+                fontFamily: "Cormorant Infant, sans-serif",
+                color: "black",
+                fontSize: "20px",
+              },
+            })
+          }
+          else if (each._id == data?._id) {
             // console.log("enter")
   
             const newValue = each.quantity + 1;

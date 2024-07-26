@@ -70,6 +70,16 @@ const Products = () => {
     const product = cart.filter((eachProduct) => eachProduct._id == data._id);
     // console.log(product)
 
+    if (data.quantity <=0){
+      return toast.error("Not Available", {
+        style: {
+          fontFamily: "Cormorant Infant, sans-serif",
+          color: "black",
+          fontSize: "20px",
+        },
+      })
+    }
+
     if (product?.length == 0) {
       dispatch(
         addProduct({
@@ -90,7 +100,16 @@ const Products = () => {
       });
     } else {
       cart.filter((each) => {
-        if (each._id == data?._id) {
+        if (data.quantity <=0){
+          return toast.error("Quantity exceeded", {
+            style: {
+              fontFamily: "Cormorant Infant, sans-serif",
+              color: "black",
+              fontSize: "20px",
+            },
+          })
+        }
+        else if (each._id == data?._id) {
           // console.log("enter")
 
           const newValue = each.quantity + 1;
@@ -181,7 +200,7 @@ const Products = () => {
       <div className="w-[70%]  grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mx-auto place-items-center mt-20 pb-20">
         {data.data.slice(0, 6).map((product:Product, idx:number) => (
           <Link to={`/products/${product.title}`}>
-            <div key={idx} className="card  bg-slate-500   ">
+            <div key={idx} className="card block  bg-slate-500   ">
               <div className="absolute flex justify-end w-full">
                 <div
                   onClick={(event) => clicked(event,product)}
@@ -251,3 +270,10 @@ const Products = () => {
 };
 
 export default Products;
+
+
+
+
+
+
+
